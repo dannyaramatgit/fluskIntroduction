@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <script type = "text/javascript" 
+         src = "{{ url_for('static', filename = 'hello.js') }}" ></script>
+</head>
+<body>
+    <h3> hello {{username}}</h3>
+    <input type = "button" onclick = "sayHello()" value = "Say Hello" />
+<h1 style="text-align:center">Test results</h1>
+{% if results %}
+    <table border="1">
+    {% for key,val in results.items() %}
+        <tr>
+            <th>{{key}}</th>
+            <td>{{val}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <h2 style="text-aligh:canter">No results found</h2>
+{% endif %}
+
+<a href="http://localhost:5000/grade">grades form</a>
+</body>
+
+
+</html>
