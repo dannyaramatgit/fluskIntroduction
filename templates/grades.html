@@ -4,6 +4,7 @@
 </head>
 <body>
     <h3> hello {{username}}</h3>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />>
     <p><h1 style="text-align:center">Enter your grades</h1></p>
     <form action="http://localhost:5000/results" method='post'>
         <p>Math<input type="text" name="math"/></p>

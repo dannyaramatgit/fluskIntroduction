@@ -1,0 +1,21 @@
+<html>
+    <head></head>
+   <body>
+      <form action = "{{ url_for('addrec') }}" method = "POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+         <h3>Student Information</h3>
+         Name<br>
+         <input type = "text" name = "nm" /></br>
+         
+         Address<br>
+         <textarea name = "add" ></textarea><br>
+         
+         City<br>
+         <input type = "text" name = "city" /><br>
+         
+         PINCODE<br>
+         <input type = "text" name = "pin" /><br>
+         <input type = "submit" value = "submit" /><br>
+      </form>
+   </body>
+</html>
