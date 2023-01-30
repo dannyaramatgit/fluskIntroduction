@@ -2,7 +2,11 @@
 <html>
    <body>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />>
-      result of addition : {{ msg }}
+      
       <h2><a href = "\addnew">go back to home page</a></h2>
+      <p>{{ student.name }}</p>
+      <br/>
+      {{ student.course.name }}
+  
    </body>
 </html>
