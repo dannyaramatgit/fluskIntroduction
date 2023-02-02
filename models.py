@@ -1,8 +1,9 @@
-from flask import Flask, request, flash, url_for, redirect, render_template
+from flask import Flask, request, flash, url_for, redirect, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from flask_wtf.csrf import CSRFProtect
 from flask_restful import Api, Resource, fields, marshal_with
+from sqlalchemy_serializer import SerializerMixin
 
 
 app = Flask(__name__)
@@ -15,6 +16,7 @@ csrf = CSRFProtect(app)
 csrf.init_app(app)
 
 db = SQLAlchemy(app)
+
 studend_fields = {
     'id': fields.Integer,
     'name': fields.String,
@@ -25,6 +27,12 @@ studend_fields = {
     'courses': fields.Integer
 }
 
+course_fields = {
+    'id': fields.Integer,
+    'name': fields.String,
+    'student': fields.String
+}
+
 
 class Studends(Resource):
     @marshal_with(studend_fields)
@@ -33,7 +41,15 @@ class Studends(Resource):
         return students
 
 
+class CoursesApi(Resource):
+    @marshal_with(course_fields)
+    def get(self):
+        courses = Course.query.all()
+        return courses
+
+
 api.add_resource(Studends, '/s_list')
+api.add_resource(CoursesApi, '/api_courses')
 
 
 student_course = db.Table('student_course', db.Model.metadata,
@@ -64,6 +80,7 @@ class Student(db.Model):
 
 
 class Course(db.Model):
+    #  serialize_only = ('id', 'name')
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     student = db.relationship(
