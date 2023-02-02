@@ -14,3 +14,6 @@ class ContactForm(FlaskForm):
    language = SelectField('Languages', choices = [('cpp', 'C++'), 
       ('py', 'Python')])
    submit = SubmitField("Send")
+
+class CourseForm(FlaskForm):
+   name = StringField("Name of course", validators=[validators.data_required("Must fill name")])
