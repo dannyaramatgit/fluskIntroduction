@@ -7,6 +7,7 @@
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />>
     <p><h1 style="text-align:center">Enter your grades</h1></p>
     <form action="http://localhost:5000/results" method='post'>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <p>Math<input type="text" name="math"/></p>
         <p>English<input type="text" name="english"/></p>
         <p>Biology<input type="text" name="biology"/></p>

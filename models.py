@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 from flask_wtf.csrf import CSRFProtect
 from flask_restful import Api, Resource, fields, marshal_with
 from sqlalchemy_serializer import SerializerMixin
-
+import logging
 
 app = Flask(__name__)
 api = Api(app)
@@ -167,5 +167,16 @@ def courses():
 
 if __name__ == '__main__':
     #  db.drop_all()
-    db.create_all()
-    app.run(debug=True)
+    # db.create_all()
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(asctime)s %(levelname)s %(message)s",
+        datefmt="%d-%m-%Y %H:%M:%S",
+        filename="students.log"
+    )
+    logging.info("this is an INFO message")
+    logging.debug("this is a DEBUG message")
+    logging.warning("this is a WARNING message")
+    logging.error("this is an ERROR message")
+    logging.critical("this is a CRITICAL message")
+    app.run(host="0.0.0.0", debug=True)
